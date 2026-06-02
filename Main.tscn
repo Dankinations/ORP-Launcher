@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://clqgrduabl11s"]
+
+[ext_resource type="Script" uid="uid://b53uoxubogm1w" path="res://scripts/MainScene.gd" id="1_r0du0"]
+[ext_resource type="Texture2D" uid="uid://bwed3vhg5xcqe" path="res://images/BG.png" id="1_uu6xs"]
+[ext_resource type="Script" uid="uid://317pb05i7ww6" path="res://scripts/bg.gd" id="2_r0du0"]
+[ext_resource type="FontFile" uid="uid://o84evqeuqnf" path="res://fonts/Montserrat-Regular.ttf" id="3_r0du0"]
+[ext_resource type="Texture2D" uid="uid://7ukr4r8olqtv" path="res://images/icon.png" id="5_fos0i"]
+[ext_resource type="Texture2D" uid="uid://dnx17405hgs3c" path="res://images/cross.png" id="6_3dxm6"]
+[ext_resource type="Texture2D" uid="uid://0q13mnpcucp7" path="res://images/minus.png" id="7_lgr22"]
+
+[sub_resource type="Theme" id="Theme_3dxm6"]
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 0.49400002)
+Button/colors/icon_normal_color = Color(1, 1, 1, 0.193)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 0.62)
+
+[sub_resource type="GDScript" id="GDScript_lgr22"]
+resource_name = "ExitScript"
+script/source = "extends Button
+
+func _pressed() -> void:
+	WindowHandler._notification(NOTIFICATION_WM_CLOSE_REQUEST)
+"
+
+[sub_resource type="GDScript" id="GDScript_3dxm6"]
+resource_name = "ExitScript"
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	get_window().mode = Window.MODE_MINIMIZED
+"
+
+[node name="Main_tscn" type="Node2D" unique_id=1157706882]
+script = ExtResource("1_r0du0")
+
+[node name="BG" type="Sprite2D" parent="." unique_id=1793067391]
+modulate = Color(0.45775273, 0.45775273, 0.45775273, 1)
+texture = ExtResource("1_uu6xs")
+region_enabled = true
+region_rect = Rect2(0, 0, 1200, 800)
+script = ExtResource("2_r0du0")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1437520886]
+
+[node name="TopBar" type="ColorRect" parent="." unique_id=860444862]
+offset_left = -600.0
+offset_top = -400.0
+offset_right = 600.0
+offset_bottom = -360.0
+color = Color(0, 0, 0, 0.3137255)
+
+[node name="Title" type="Label" parent="TopBar" unique_id=1619719486]
+layout_mode = 0
+offset_right = 550.0
+offset_bottom = 80.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("3_r0du0")
+theme_override_font_sizes/font_size = 64
+text = "ORP Launcher"
+horizontal_alignment = 1
+
+[node name="Icon" type="Sprite2D" parent="TopBar" unique_id=1865698392]
+position = Vector2(1138, 739)
+scale = Vector2(0.8133333, 0.8133333)
+texture = ExtResource("5_fos0i")
+
+[node name="Exit" type="Button" parent="TopBar" unique_id=997657386]
+layout_mode = 0
+offset_left = 1164.0
+offset_top = 4.0
+offset_right = 1195.0
+offset_bottom = 35.0
+focus_mode = 1
+theme = SubResource("Theme_3dxm6")
+icon = ExtResource("6_3dxm6")
+flat = true
+expand_icon = true
+script = SubResource("GDScript_lgr22")
+
+[node name="Minimize" type="Button" parent="TopBar" unique_id=686619766]
+layout_mode = 0
+offset_left = 1130.0
+offset_top = 4.0
+offset_right = 1161.0
+offset_bottom = 35.0
+focus_mode = 1
+theme = SubResource("Theme_3dxm6")
+icon = ExtResource("7_lgr22")
+flat = true
+expand_icon = true
+script = SubResource("GDScript_3dxm6")
+
+[connection signal="gui_input" from="TopBar" to="." method="_on_top_bar_gui_input"]
+[connection signal="pressed" from="TopBar/Exit" to="TopBar/Exit" method="_on_pressed"]
+[connection signal="pressed" from="TopBar/Minimize" to="TopBar/Minimize" method="_on_pressed"]

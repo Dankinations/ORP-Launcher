@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c15h8usjcn0t7"]
+
+[ext_resource type="Script" uid="uid://2857pcmqxhlv" path="res://scripts/Loading.gd" id="1_0u603"]
+[ext_resource type="Texture2D" uid="uid://bwed3vhg5xcqe" path="res://images/BG.png" id="2_3ipkp"]
+[ext_resource type="Script" uid="uid://317pb05i7ww6" path="res://scripts/bg.gd" id="3_hcrdm"]
+[ext_resource type="Texture2D" uid="uid://7ukr4r8olqtv" path="res://images/icon.png" id="4_mrh31"]
+[ext_resource type="FontFile" uid="uid://o84evqeuqnf" path="res://fonts/Montserrat-Regular.ttf" id="5_u524s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uu6xs"]
+
+[node name="UI" type="Node2D" unique_id=853033731]
+material = SubResource("ShaderMaterial_uu6xs")
+script = ExtResource("1_0u603")
+
+[node name="BG" type="Sprite2D" parent="." unique_id=471787287]
+modulate = Color(0.45775273, 0.45775273, 0.45775273, 1)
+position = Vector2(150, 200)
+texture = ExtResource("2_3ipkp")
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 400)
+script = ExtResource("3_hcrdm")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=379352024]
+position = Vector2(150, 80)
+texture = ExtResource("4_mrh31")
+
+[node name="Title" type="Label" parent="." unique_id=1525027649]
+offset_left = 12.0
+offset_top = 250.0
+offset_right = 562.0
+offset_bottom = 330.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("5_u524s")
+theme_override_font_sizes/font_size = 64
+text = "Loading"
+horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1552164457]
+offset = Vector2(150, 200)

@@ -2,7 +2,7 @@ extends Node2D
 
 func _ready():
 	self.modulate = Color8(0,0,0,0)
-	get_window().size = Vector2i(1200,800)
+	get_window().size = Vector2i($BG.region_rect.size.x,$BG.region_rect.size.y)
 	@warning_ignore("integer_division")
 	var pos = DisplayServer.screen_get_size(get_window().current_screen)/2-get_window().size/2
 	WindowHandler.goal = pos

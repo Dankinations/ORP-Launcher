@@ -77,7 +77,7 @@ script = ExtResource("8_wkp8b")
 [sub_resource type="FontVariation" id="FontVariation_20pc6"]
 base_font = ExtResource("10_wkp8b")
 variation_opentype = {
-2003265652: 100
+2003265652: 400
 }
 variation_transform = Transform2D(1, 0, 0, 1.1, 0, 0)
 
@@ -212,9 +212,9 @@ horizontal_alignment = 1
 metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="Play" type="Button" parent="." unique_id=83936066]
-offset_left = 420.0
+offset_left = 392.0
 offset_top = 221.0
-offset_right = 940.0
+offset_right = 912.0
 offset_bottom = 466.0
 scale = Vector2(0.25, 0.25)
 theme = ExtResource("8_trn2v")
@@ -227,9 +227,9 @@ icon_alignment = 2
 anchors_preset = -1
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 413.0
+offset_left = 420.0
 offset_top = 282.0
-offset_right = 703.0
+offset_right = 699.0
 offset_bottom = 368.0
 grow_horizontal = 2
 grow_vertical = 2

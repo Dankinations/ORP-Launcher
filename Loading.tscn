@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bwed3vhg5xcqe" path="res://images/BG.png" id="2_3ipkp"]
 [ext_resource type="Script" uid="uid://317pb05i7ww6" path="res://scripts/bg.gd" id="3_hcrdm"]
 [ext_resource type="Texture2D" uid="uid://7ukr4r8olqtv" path="res://images/icon.png" id="4_mrh31"]
+[ext_resource type="Shader" uid="uid://rcadtwki37ib" path="res://resources/transparentMiddle.gdshader" id="5_3ipkp"]
 [ext_resource type="FontFile" uid="uid://o84evqeuqnf" path="res://fonts/Montserrat-Regular.ttf" id="5_u524s"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uu6xs"]
@@ -13,6 +14,11 @@ bg_color = Color(1, 1, 1, 0)
 draw_center = false
 shadow_color = Color(0, 0, 0, 0.476)
 shadow_size = 20
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hcrdm"]
+shader = ExtResource("5_3ipkp")
+shader_parameter/iris_size = 0.0
+shader_parameter/aspect_ratio = 0.75
 
 [node name="UI" type="Node2D" unique_id=853033731]
 material = SubResource("ShaderMaterial_uu6xs")
@@ -37,9 +43,11 @@ region_enabled = true
 region_rect = Rect2(0, 0, 300, 400)
 script = ExtResource("3_hcrdm")
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=379352024]
-position = Vector2(150, 80)
-texture = ExtResource("4_mrh31")
+[node name="ColorRect" type="ColorRect" parent="." unique_id=739161987]
+material = SubResource("ShaderMaterial_hcrdm")
+offset_right = 300.0
+offset_bottom = 400.0
+color = Color(0.29411766, 0.14117648, 0.36862746, 1)
 
 [node name="Title" type="Label" parent="." unique_id=1525027649]
 offset_left = 12.0
@@ -51,6 +59,10 @@ theme_override_fonts/font = ExtResource("5_u524s")
 theme_override_font_sizes/font_size = 64
 text = "Loading"
 horizontal_alignment = 1
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=379352024]
+position = Vector2(150, 80)
+texture = ExtResource("4_mrh31")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1552164457]
 offset = Vector2(150, 200)

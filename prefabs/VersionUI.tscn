@@ -53,6 +53,7 @@ fit_content = true
 horizontal_alignment = 2
 
 [node name="Changelogs" type="Button" parent="." unique_id=484899820]
+visible = false
 layout_mode = 0
 offset_left = 165.0
 offset_top = 85.5
@@ -65,10 +66,9 @@ text = "Changelogs"
 
 [node name="Select" type="Button" parent="." unique_id=889354838]
 layout_mode = 0
-offset_left = 6.5
-offset_top = 85.5
-offset_right = 310.5
-offset_bottom = 156.5
+offset_top = 78.0
+offset_right = 600.0
+offset_bottom = 167.0
 scale = Vector2(0.5, 0.5)
 focus_mode = 1
 theme = ExtResource("3_2be5r")

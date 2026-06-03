@@ -21,6 +21,7 @@ config/icon="uid://7ukr4r8olqtv"
 [autoload]
 
 WindowHandler="*uid://bfcnbuikjj666"
+Shared="*uid://crvhmjh1u7vy4"
 
 [display]
 
@@ -32,7 +33,6 @@ window/size/borderless=true
 window/size/transparent=true
 window/subwindows/embed_subwindows=false
 window/per_pixel_transparency/allowed=true
-window/vsync/vsync_mode=0
 
 [editor_plugins]
 
@@ -43,6 +43,10 @@ enabled=PackedStringArray("res://addons/SmoothScroll/plugin.cfg")
 folder_colors={
 "res://scripts/": "green"
 }
+
+[physics]
+
+2d/run_on_separate_thread=true
 
 [rendering]
 

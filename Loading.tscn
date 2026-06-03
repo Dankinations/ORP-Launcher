@@ -8,12 +8,29 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uu6xs"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0u603"]
+bg_color = Color(1, 1, 1, 0)
+draw_center = false
+shadow_color = Color(0, 0, 0, 0.476)
+shadow_size = 20
+
 [node name="UI" type="Node2D" unique_id=853033731]
 material = SubResource("ShaderMaterial_uu6xs")
 script = ExtResource("1_0u603")
 
+[node name="Shadow" type="Label" parent="." unique_id=253327264]
+offset_right = 600.0
+offset_bottom = 800.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("5_u524s")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_0u603")
+text = "Loading"
+horizontal_alignment = 1
+
 [node name="BG" type="Sprite2D" parent="." unique_id=471787287]
 modulate = Color(0.45775273, 0.45775273, 0.45775273, 1)
+texture_repeat = 3
 position = Vector2(150, 200)
 texture = ExtResource("2_3ipkp")
 region_enabled = true

@@ -5,8 +5,12 @@ var goal = Vector2i()
 var exiting = false
 var last_mouse_pos
 
+var win_speed = 5.0
+var smooth_win_pos = Vector2.ZERO
+
 func _ready():
 	goal = get_window().position
+	smooth_win_pos = goal
 	get_tree().scene_changed.connect(func():
 		dragging = false
 		pass)
@@ -15,7 +19,7 @@ func get_main() :
 	for child in get_tree().root.get_children():
 		if child is Node2D: return child
 
-func _process(_dt):
+func _process(dt):
 	var curr_pos = DisplayServer.mouse_get_position()
 	
 	if dragging:
@@ -23,11 +27,10 @@ func _process(_dt):
 		goal += vel
 	
 	last_mouse_pos = curr_pos
-	var win_pos = get_window().position
-	@warning_ignore("narrowing_conversion")
-	get_window().position.x = move_toward(win_pos.x,goal.x,abs(goal.x-win_pos.x)/4)
-	@warning_ignore("narrowing_conversion")
-	get_window().position.y = move_toward(win_pos.y,goal.y,abs(goal.y-win_pos.y)/4)
+	var target = Vector2(goal)
+	smooth_win_pos = smooth_win_pos.lerp(target, 1.0 - exp(-15.0 * dt))
+	
+	get_window().position = Vector2i(smooth_win_pos.round())
 	
 	if Input.is_key_pressed(KEY_ESCAPE):
 		_notification(NOTIFICATION_WM_CLOSE_REQUEST)

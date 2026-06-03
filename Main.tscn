@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://0q13mnpcucp7" path="res://images/minus.png" id="7_lgr22"]
 [ext_resource type="Theme" uid="uid://cfyhe54n41bno" path="res://resources/VersionPanel/Button.tres" id="8_trn2v"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="8_wkp8b"]
+[ext_resource type="FontFile" uid="uid://c85x8mgrk760e" path="res://fonts/Montserrat-VariableFont_wght.ttf" id="10_wkp8b"]
 
 [sub_resource type="Theme" id="Theme_3dxm6"]
 Button/colors/icon_hover_color = Color(1, 1, 1, 1)
@@ -32,6 +33,10 @@ func _on_pressed() -> void:
 	get_window().mode = Window.MODE_MINIMIZED
 "
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c2ibq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j4qnp"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_03owx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wkp8b"]
@@ -43,6 +48,8 @@ func _on_pressed() -> void:
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c6i3y"]
 
 [sub_resource type="Theme" id="Theme_c2ibq"]
+ScrollContainer/styles/focus = SubResource("StyleBoxEmpty_c2ibq")
+ScrollContainer/styles/panel = SubResource("StyleBoxEmpty_j4qnp")
 VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_03owx")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_wkp8b")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_20pc6")
@@ -50,7 +57,7 @@ VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_5vvyt")
 VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_c6i3y")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgr22"]
-bg_color = Color(1, 1, 1, 0.115)
+bg_color = Color(1, 1, 1, 0)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -62,11 +69,19 @@ script = ExtResource("8_wkp8b")
 [sub_resource type="Resource" id="Resource_5vvyt"]
 script = ExtResource("8_wkp8b")
 
+[sub_resource type="FontVariation" id="FontVariation_20pc6"]
+base_font = ExtResource("10_wkp8b")
+variation_opentype = {
+2003265652: 100
+}
+variation_transform = Transform2D(1, 0, 0, 1.1, 0, 0)
+
 [node name="Main_tscn" type="Node2D" unique_id=1157706882]
 script = ExtResource("1_r0du0")
 
 [node name="BG" type="Sprite2D" parent="." unique_id=1793067391]
 modulate = Color(0.45775273, 0.45775273, 0.45775273, 1)
+texture_repeat = 3
 texture = ExtResource("1_uu6xs")
 region_enabled = true
 region_rect = Rect2(0, 0, 1152, 648)
@@ -81,15 +96,29 @@ offset_right = 576.0
 offset_bottom = -284.0
 color = Color(0, 0, 0, 0.3137255)
 
-[node name="Title" type="Label" parent="TopBar" unique_id=1619719486]
+[node name="Title" type="Label" parent="TopBar" unique_id=235665902]
 layout_mode = 0
 offset_right = 550.0
-offset_bottom = 80.0
+offset_bottom = 79.0
 scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("3_r0du0")
 theme_override_font_sizes/font_size = 64
 text = "ORP Launcher"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title2" type="Label" parent="TopBar" unique_id=1741064525]
+layout_mode = 0
+offset_left = 996.0
+offset_right = 1122.0
+offset_bottom = 79.0
+scale = Vector2(0.5, 0.5)
+focus_behavior_recursive = 1
+theme_override_fonts/font = ExtResource("3_r0du0")
+theme_override_font_sizes/font_size = 64
+text = "v1.0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Exit" type="Button" parent="TopBar" unique_id=997657386]
 layout_mode = 0
@@ -135,6 +164,14 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 10
 metadata/_smooth_scroll_default_mouse_filter_set = true
 
+[node name="Label" type="Label" parent="VersionsList/Holder" unique_id=1857995580]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+mouse_filter = 1
+text = "Hey you dont have any versions installed, go install some!"
+autowrap_mode = 2
+metadata/_smooth_scroll_default_mouse_filter_set = true
+
 [node name="Label" type="Label" parent="." unique_id=1343436084]
 offset_left = -435.0
 offset_top = -277.0
@@ -146,14 +183,32 @@ horizontal_alignment = 1
 metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="Play" type="Button" parent="." unique_id=83936066]
-offset_left = 288.0
-offset_top = 169.0
-offset_right = 864.0
-offset_bottom = 482.0
+offset_left = 420.0
+offset_top = 221.0
+offset_right = 940.0
+offset_bottom = 466.0
+scale = Vector2(0.25, 0.25)
+theme = ExtResource("8_trn2v")
+theme_override_font_sizes/font_size = 200
+text = "PLAY"
+alignment = 0
+icon_alignment = 2
+
+[node name="Options" type="Button" parent="." unique_id=321320964]
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 413.0
+offset_top = 282.0
+offset_right = 703.0
+offset_bottom = 368.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("8_trn2v")
-theme_override_font_sizes/font_size = 256
-text = "Play"
+theme_override_fonts/font = SubResource("FontVariation_20pc6")
+theme_override_font_sizes/font_size = 70
+text = "Options"
 
 [connection signal="gui_input" from="TopBar" to="." method="_on_top_bar_gui_input"]
 [connection signal="pressed" from="TopBar/Exit" to="TopBar/Exit" method="_on_pressed"]

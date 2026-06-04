@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://4bgcn24cj5y2"]
+
+[ext_resource type="FontFile" uid="uid://o84evqeuqnf" path="res://fonts/Montserrat-Regular.ttf" id="1_c067o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fpfj3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sc1dx"]
+bg_color = Color(0.267332, 0.15683335, 0.51676434, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjvhd"]
+bg_color = Color(1, 1, 1, 0.5)
+
+[node name="Loading" type="Panel" unique_id=506559725]
+custom_minimum_size = Vector2(0, 20)
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fpfj3")
+metadata/_smooth_scroll_default_mouse_filter_set = true
+
+[node name="Progress" type="ProgressBar" parent="." unique_id=162160699]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 0
+offset_top = 5.0
+offset_right = 150.0
+offset_bottom = 15.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("1_c067o")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_sc1dx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kjvhd")
+value = 50.0
+rounded = true
+show_percentage = false
+metadata/_smooth_scroll_default_mouse_filter_set = true
+
+[node name="Label" type="Label" parent="." unique_id=980210632]
+layout_mode = 0
+offset_left = 150.0
+offset_right = 299.0
+offset_bottom = 21.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("1_c067o")
+theme_override_font_sizes/font_size = 14
+text = "Downloading v0.0.0"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_smooth_scroll_default_mouse_filter_set = true

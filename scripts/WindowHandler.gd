@@ -41,7 +41,6 @@ func _notification(what: int) -> void:
 		if !exiting:
 			exiting = true
 			var main = get_main()
-			print(main)
 			create_tween().tween_property(main,"modulate",Color8(0,0,0,0),.5)
 			await get_tree().create_timer(.55).timeout
 			get_tree().quit()

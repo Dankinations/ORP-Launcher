@@ -201,6 +201,25 @@ metadata/_smooth_scroll_default_mouse_filter_set = true
 mouse_filter = 1
 metadata/_smooth_scroll_default_mouse_filter_set = true
 
+[node name="InstallList" type="ScrollContainer" parent="." unique_id=1883311439]
+offset_left = -150.0
+offset_top = 217.0
+offset_right = 150.0
+offset_bottom = 314.0
+pivot_offset = Vector2(150, 0)
+theme = SubResource("Theme_c2ibq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_lgr22")
+script = ExtResource("7_03owx")
+wheel_scroll_damper = SubResource("Resource_20pc6")
+dragging_scroll_damper = SubResource("Resource_5vvyt")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
+
+[node name="Holder" type="VBoxContainer" parent="InstallList" unique_id=605576472]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+metadata/_smooth_scroll_default_mouse_filter_set = true
+
 [node name="Label" type="Label" parent="." unique_id=1343436084]
 offset_left = -435.0
 offset_top = -277.0
@@ -240,20 +259,17 @@ theme_override_font_sizes/font_size = 70
 text = "Options"
 
 [node name="Tree" type="Tree" parent="." unique_id=439021865]
-offset_left = -161.0
-offset_top = -204.0
-offset_right = 158.0
-offset_bottom = 211.0
+offset_left = -160.0
+offset_top = -209.0
+offset_right = 160.0
+offset_bottom = 206.0
+pivot_offset = Vector2(160, 0)
 focus_mode = 1
 theme = SubResource("Theme_wkp8b")
 script = ExtResource("11_20pc6")
 
-[node name="GetReleases" type="HTTPRequest" parent="Tree" unique_id=311039191]
-timeout = 10.0
-
 [connection signal="gui_input" from="TopBar" to="." method="_on_top_bar_gui_input"]
 [connection signal="pressed" from="TopBar/Exit" to="TopBar/Exit" method="_on_pressed"]
 [connection signal="pressed" from="TopBar/Minimize" to="TopBar/Minimize" method="_on_pressed"]
-[connection signal="request_completed" from="Tree/GetReleases" to="Tree" method="_on_get_releases_request_completed"]
 
 [editable path="VersionsList/Holder/Latest"]

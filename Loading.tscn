@@ -20,6 +20,11 @@ shader = ExtResource("5_3ipkp")
 shader_parameter/iris_size = 0.0
 shader_parameter/aspect_ratio = 0.75
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ipkp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hcrdm"]
+bg_color = Color(1, 1, 1, 0.5)
+
 [node name="UI" type="Node2D" unique_id=853033731]
 material = SubResource("ShaderMaterial_uu6xs")
 script = ExtResource("1_0u603")
@@ -47,7 +52,7 @@ script = ExtResource("3_hcrdm")
 material = SubResource("ShaderMaterial_hcrdm")
 offset_right = 300.0
 offset_bottom = 400.0
-color = Color(0.29411766, 0.14117648, 0.36862746, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="Title" type="Label" parent="." unique_id=1525027649]
 offset_left = 12.0
@@ -60,9 +65,50 @@ theme_override_font_sizes/font_size = 64
 text = "Loading"
 horizontal_alignment = 1
 
+[node name="ProgressDesc" type="Label" parent="." unique_id=304347182]
+offset_left = 12.0
+offset_top = 311.0
+offset_right = 562.0
+offset_bottom = 391.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.2592937, 0.2592937, 0.2592937, 1)
+theme_override_fonts/font = ExtResource("5_u524s")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
 [node name="Icon" type="Sprite2D" parent="." unique_id=379352024]
 position = Vector2(150, 80)
 texture = ExtResource("4_mrh31")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1552164457]
 offset = Vector2(150, 200)
+
+[node name="Progress" type="ProgressBar" parent="." unique_id=1127671782]
+custom_minimum_size = Vector2(0, 10)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 75.0
+offset_top = 290.0
+offset_right = 225.0
+offset_bottom = 311.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_u524s")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/background = SubResource("StyleBoxEmpty_3ipkp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hcrdm")
+show_percentage = false
+metadata/_smooth_scroll_default_mouse_filter_set = true
+
+[node name="GetReleases" type="HTTPRequest" parent="." unique_id=1232870903]
+timeout = 10.0
+
+[node name="Ping" type="HTTPRequest" parent="." unique_id=1002946514]
+timeout = 10.0
+
+[connection signal="request_completed" from="GetReleases" to="." method="_on_request_completed"]
+[connection signal="request_completed" from="Ping" to="." method="_on_ping_request_completed"]

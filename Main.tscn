@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://0q13mnpcucp7" path="res://images/minus.png" id="7_lgr22"]
 [ext_resource type="Theme" uid="uid://cfyhe54n41bno" path="res://resources/VersionPanel/Button.tres" id="8_trn2v"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="8_wkp8b"]
-[ext_resource type="PackedScene" uid="uid://bkw3qdq5ik4f8" path="res://prefabs/VersionUI.tscn" id="9_5vvyt"]
 [ext_resource type="FontFile" uid="uid://c85x8mgrk760e" path="res://fonts/Montserrat-VariableFont_wght.ttf" id="10_wkp8b"]
 [ext_resource type="Script" uid="uid://c03htvb3ykq1x" path="res://scripts/VersionListerHandler.gd" id="11_20pc6"]
 
@@ -82,6 +81,8 @@ variation_opentype = {
 variation_transform = Transform2D(1, 0, 0, 1.1, 0, 0)
 
 [sub_resource type="Theme" id="Theme_wkp8b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fpfj3"]
 
 [node name="Main_tscn" type="Node2D" unique_id=1157706882]
 script = ExtResource("1_r0du0")
@@ -172,35 +173,6 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 10
 metadata/_smooth_scroll_default_mouse_filter_set = true
 
-[node name="Latest" parent="VersionsList/Holder" unique_id=1843938761 instance=ExtResource("9_5vvyt")]
-layout_mode = 2
-mouse_filter = 1
-metadata/_smooth_scroll_default_mouse_filter_set = true
-
-[node name="Icon" parent="VersionsList/Holder/Latest" index="0" unique_id=223439801]
-metadata/_smooth_scroll_default_mouse_filter_set = true
-
-[node name="Version Label" parent="VersionsList/Holder/Latest" index="1" unique_id=843062436]
-offset_right = 480.26752
-offset_bottom = 154.5
-mouse_filter = 1
-theme_override_font_sizes/normal_font_size = 120
-text = "Latest"
-metadata/_smooth_scroll_default_mouse_filter_set = true
-
-[node name="LastPlayed" parent="VersionsList/Holder/Latest" index="2" unique_id=922774946]
-mouse_filter = 1
-text = ""
-metadata/_smooth_scroll_default_mouse_filter_set = true
-
-[node name="Changelogs" parent="VersionsList/Holder/Latest" index="3" unique_id=484899820]
-mouse_filter = 1
-metadata/_smooth_scroll_default_mouse_filter_set = true
-
-[node name="Select" parent="VersionsList/Holder/Latest" index="4" unique_id=889354838]
-mouse_filter = 1
-metadata/_smooth_scroll_default_mouse_filter_set = true
-
 [node name="InstallList" type="ScrollContainer" parent="." unique_id=1883311439]
 offset_left = -150.0
 offset_top = 217.0
@@ -233,22 +205,22 @@ metadata/_smooth_scroll_default_mouse_filter_set = true
 [node name="Play" type="Button" parent="." unique_id=83936066]
 offset_left = 392.0
 offset_top = 221.0
-offset_right = 912.0
+offset_right = 964.0
 offset_bottom = 466.0
 scale = Vector2(0.25, 0.25)
 theme = ExtResource("8_trn2v")
 theme_override_font_sizes/font_size = 200
 text = "PLAY"
-alignment = 0
 icon_alignment = 2
 
 [node name="Options" type="Button" parent="." unique_id=321320964]
+visible = false
 anchors_preset = -1
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 420.0
+offset_left = 388.0
 offset_top = 282.0
-offset_right = 699.0
+offset_right = 696.0
 offset_bottom = 368.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -258,7 +230,7 @@ theme_override_fonts/font = SubResource("FontVariation_20pc6")
 theme_override_font_sizes/font_size = 70
 text = "Options"
 
-[node name="Tree" type="Tree" parent="." unique_id=439021865]
+[node name="VersionTree" type="Tree" parent="." unique_id=439021865]
 offset_left = -160.0
 offset_top = -209.0
 offset_right = 160.0
@@ -266,10 +238,11 @@ offset_bottom = 206.0
 pivot_offset = Vector2(160, 0)
 focus_mode = 1
 theme = SubResource("Theme_wkp8b")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fpfj3")
 script = ExtResource("11_20pc6")
 
 [connection signal="gui_input" from="TopBar" to="." method="_on_top_bar_gui_input"]
 [connection signal="pressed" from="TopBar/Exit" to="TopBar/Exit" method="_on_pressed"]
 [connection signal="pressed" from="TopBar/Minimize" to="TopBar/Minimize" method="_on_pressed"]
-
-[editable path="VersionsList/Holder/Latest"]
+[connection signal="child_entered_tree" from="VersionsList/Holder" to="." method="_on_holder_child_entered_tree"]
+[connection signal="button_clicked" from="VersionTree" to="VersionTree" method="_on_button_clicked"]

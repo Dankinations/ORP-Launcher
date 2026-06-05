@@ -36,6 +36,9 @@ func _process(dt: float) -> void:
 	if Input.is_key_pressed(KEY_ESCAPE):
 		_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 
+func _exit_tree() -> void:
+	Shared.save_data()
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		if !exiting:

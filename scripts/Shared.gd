@@ -1,11 +1,24 @@
 extends Node
 
-var releases = {}
+var data:UserData = UserData.new()
+var releases:
+	set(new):
+		data.Releases = new
+	get():
+		return data.Releases
+var local_releases = []
+var latest
 
-func unzip(zip:String):
+func sort_local_releases():
+	local_releases.sort_custom(func(a,b):
+		return a["tag"] > b["tag"]
+		)
+
+func _unzip_main(zip):
 	var reader := ZIPReader.new()
 	var err := reader.open(zip)
-	if err != OK: push_error("Couldn't open zip correctly!"); return false
+	if err != OK: push_error("Couldn't open zip correctly!");\
+		_unzip_finished.call_deferred(false); reader.close(); return false
 	
 	var files := reader.get_files()
 	
@@ -34,7 +47,28 @@ func unzip(zip:String):
 	reader.close()
 	print("Unzipped everything to " + zip.get_base_dir())
 	DirAccess.remove_absolute(zip)
-	return true
+	
+	_unzip_finished.call_deferred(true)
+
+func _unzip_finished(succ:bool):
+	print("zip process success returned : ", succ)
+
+func unzip(zip:String):
+	var thread := Thread.new()
+	thread.start(_unzip_main.bind(zip))
+
+func is_ver_installed(tag:String):
+	var versions = DirAccess.open("user://Versions")
+	versions.list_dir_begin()
+	var curr
+	while true:
+		curr = versions.get_next()
+		if curr == "": break
+		if curr.get_file().to_lower() == tag:
+			versions.list_dir_end()
+			return true
+	versions.list_dir_end()
+	return false
 
 func download_ver(tag:String,asset:String,update_progress:Callable):
 	var headers = [
@@ -71,3 +105,15 @@ func download_ver(tag:String,asset:String,update_progress:Callable):
 	
 	timer.call_deferred("queue_free")
 	installer.call_deferred("queue_free")
+
+func find_release_link(assets:Array,find:String):
+	for x in assets:
+		var n:String = x["name"]
+		if n.to_lower().find(find.to_lower()): return x["browser_download_url"]
+	return null
+
+func save_data():
+	ResourceSaver.save(data,"user://data.tres")
+
+func load_data():
+	data = ResourceLoader.load("user://data.tres")

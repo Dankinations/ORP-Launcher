@@ -27,7 +27,6 @@ theme_override_fonts/font = ExtResource("1_c067o")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/background = SubResource("StyleBoxFlat_sc1dx")
 theme_override_styles/fill = SubResource("StyleBoxFlat_kjvhd")
-value = 50.0
 rounded = true
 show_percentage = false
 metadata/_smooth_scroll_default_mouse_filter_set = true

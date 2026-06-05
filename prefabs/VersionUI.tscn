@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://7ukr4r8olqtv" path="res://images/icon.png" id="1_jps3h"]
 [ext_resource type="FontFile" uid="uid://o84evqeuqnf" path="res://fonts/Montserrat-Regular.ttf" id="2_mnpy2"]
 [ext_resource type="Theme" uid="uid://cfyhe54n41bno" path="res://resources/VersionPanel/Button.tres" id="3_2be5r"]
+[ext_resource type="Texture2D" uid="uid://dbqos1yuoa8j1" path="res://images/trash.png" id="4_mnpy2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jps3h"]
 bg_color = Color(0.04755766, 0.047557645, 0.047557645, 0.34901962)
@@ -23,7 +24,7 @@ scale = Vector2(0.34666666, 0.34666666)
 focus_behavior_recursive = 1
 texture = ExtResource("1_jps3h")
 
-[node name="Version Label" type="RichTextLabel" parent="." unique_id=843062436]
+[node name="VersionLabel" type="RichTextLabel" parent="." unique_id=843062436]
 layout_mode = 0
 offset_left = 90.0
 offset_top = 6.5
@@ -36,6 +37,7 @@ theme_override_fonts/normal_font = ExtResource("2_mnpy2")
 theme_override_font_sizes/normal_font_size = 128
 text = "1.0.0"
 fit_content = true
+autowrap_mode = 0
 
 [node name="LastPlayed" type="RichTextLabel" parent="." unique_id=922774946]
 layout_mode = 0
@@ -48,7 +50,6 @@ focus_behavior_recursive = 1
 theme_override_colors/default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
 theme_override_fonts/normal_font = ExtResource("2_mnpy2")
 theme_override_font_sizes/normal_font_size = 24
-text = "1h ago"
 fit_content = true
 horizontal_alignment = 2
 
@@ -73,3 +74,16 @@ scale = Vector2(0.5, 0.5)
 focus_mode = 1
 theme = ExtResource("3_2be5r")
 text = "Select"
+
+[node name="Delete" type="TextureButton" parent="." unique_id=1195208205]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+scale = Vector2(0.35, 0.35)
+focus_mode = 1
+texture_normal = ExtResource("4_mnpy2")
+texture_pressed = ExtResource("4_mnpy2")
+texture_hover = ExtResource("4_mnpy2")
+texture_disabled = ExtResource("4_mnpy2")
+texture_focused = ExtResource("4_mnpy2")
+stretch_mode = 4

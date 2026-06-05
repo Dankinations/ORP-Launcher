@@ -3,11 +3,10 @@
 [ext_resource type="Script" uid="uid://2857pcmqxhlv" path="res://scripts/Loading.gd" id="1_0u603"]
 [ext_resource type="Texture2D" uid="uid://bwed3vhg5xcqe" path="res://images/BG.png" id="2_3ipkp"]
 [ext_resource type="Script" uid="uid://317pb05i7ww6" path="res://scripts/bg.gd" id="3_hcrdm"]
-[ext_resource type="Texture2D" uid="uid://7ukr4r8olqtv" path="res://images/icon.png" id="4_mrh31"]
 [ext_resource type="Shader" uid="uid://rcadtwki37ib" path="res://resources/transparentMiddle.gdshader" id="5_3ipkp"]
 [ext_resource type="FontFile" uid="uid://o84evqeuqnf" path="res://fonts/Montserrat-Regular.ttf" id="5_u524s"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uu6xs"]
+[ext_resource type="VideoStream" uid="uid://7xajukyqwtqr" path="res://images/icon.ogv" id="6_3ipkp"]
+[ext_resource type="Shader" uid="uid://dv8smu4bvjx12" path="res://Chroma-Key-Shader-Godot-4-87c4a30f8fcaab3de435412d8486752dc6713be8/control.gdshader" id="6_hcrdm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0u603"]
 bg_color = Color(1, 1, 1, 0)
@@ -25,8 +24,13 @@ shader_parameter/aspect_ratio = 0.75
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hcrdm"]
 bg_color = Color(1, 1, 1, 0.5)
 
-[node name="UI" type="Node2D" unique_id=853033731]
-material = SubResource("ShaderMaterial_uu6xs")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mrh31"]
+shader = ExtResource("6_hcrdm")
+shader_parameter/chroma_key_color = Color(0, 1, 0, 1)
+shader_parameter/pickup_range = 0.450000021375
+shader_parameter/fade_amount = 1.0
+
+[node name="UI" type="Node2D" unique_id=1530049651]
 script = ExtResource("1_0u603")
 
 [node name="Shadow" type="Label" parent="." unique_id=253327264]
@@ -36,7 +40,6 @@ scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("5_u524s")
 theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = SubResource("StyleBoxFlat_0u603")
-text = "Loading"
 horizontal_alignment = 1
 
 [node name="BG" type="Sprite2D" parent="." unique_id=471787287]
@@ -76,10 +79,6 @@ theme_override_fonts/font = ExtResource("5_u524s")
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=379352024]
-position = Vector2(150, 80)
-texture = ExtResource("4_mrh31")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1552164457]
 offset = Vector2(150, 200)
 
@@ -109,6 +108,24 @@ timeout = 10.0
 
 [node name="Ping" type="HTTPRequest" parent="." unique_id=1002946514]
 timeout = 10.0
+
+[node name="Icon" type="CanvasGroup" parent="." unique_id=1272076341]
+modulate = Color(1, 1, 1, 0)
+top_level = true
+
+[node name="Icon" type="VideoStreamPlayer" parent="Icon" unique_id=263558008]
+texture_filter = 2
+texture_repeat = 1
+material = SubResource("ShaderMaterial_mrh31")
+offset_left = 80.0
+offset_top = 70.0
+offset_right = 220.0
+offset_bottom = 210.0
+stream = ExtResource("6_3ipkp")
+autoplay = true
+expand = true
+loop = true
+buffering_msec = 10
 
 [connection signal="request_completed" from="GetReleases" to="." method="_on_request_completed"]
 [connection signal="request_completed" from="Ping" to="." method="_on_ping_request_completed"]

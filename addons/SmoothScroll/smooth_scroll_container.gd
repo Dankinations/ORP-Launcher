@@ -882,3 +882,7 @@ func _execute_ensure_control_visible(control: Control, instant: bool) -> void:
 		if target_y != pos.y:
 			_scroll_y_to_internal(target_y)
 #endregion
+
+
+func _on_holder_child_entered_tree(node: Node) -> void:
+	pass # Replace with function body.

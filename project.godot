@@ -14,9 +14,10 @@ config/name="ORP Launcher"
 run/main_scene="uid://c15h8usjcn0t7"
 config/auto_accept_quit=false
 config/features=PackedStringArray("4.6")
+boot_splash/bg_color=Color(0, 0, 0, 0)
 boot_splash/show_image=false
-boot_splash/use_filter=false
-config/icon="uid://7ukr4r8olqtv"
+boot_splash/stretch_mode=5
+config/icon="uid://qfkscn2xm4cu"
 
 [autoload]
 

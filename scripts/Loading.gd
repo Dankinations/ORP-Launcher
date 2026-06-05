@@ -48,7 +48,7 @@ func _ready():
 	desc.text = "Loading data..."
 	await Shared.load_data()
 	
-	ping.request("https://example.com/") # pinging to see if its online
+	ping.request("https://google.com/") # pinging to see if its online
 	await ping.request_completed
 	
 	await get_tree().create_timer(1).timeout

@@ -31,6 +31,7 @@ func _ready():
 	$Play.pressed.connect(func():
 		var path = ProjectSettings.globalize_path("user://Versions/"+selected_ver+"/orp."+ext)
 		if OS.get_name() == "Linux": OS.execute("chmod",["+x", path])
+		if OS.get_name() == "Windows": path = path.replace("/","\\")
 		var result = OS.create_process(path,[])
 		pass)
 
@@ -54,6 +55,7 @@ func _on_holder_child_entered_tree(p: Node) -> void:
 	
 	delete.pressed.connect(func():
 		var to_remove = ProjectSettings.globalize_path("user://Versions/"+p.get_node("VersionLabel").text)
+		if OS.get_name() == "Windows": to_remove = to_remove.replace("/","\\")
 		OS.move_to_trash(to_remove)
 		p.call_deferred("queue_free")
 		pass)

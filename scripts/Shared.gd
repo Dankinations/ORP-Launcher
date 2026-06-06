@@ -109,7 +109,7 @@ func download_ver(tag:String,asset:String,update_progress:Callable):
 func find_release_link(assets:Array,find:String):
 	for x in assets:
 		var n:String = x["name"]
-		if n.to_lower().find(find.to_lower()): return x["browser_download_url"]
+		if n.to_lower().contains(find.to_lower()): return x["browser_download_url"]
 	return null
 
 func save_data():
